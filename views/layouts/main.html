@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WDTF</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+     <link href="css/styles.css" rel="stylesheet">
+     <script src="/socket.io/socket.io.js"></script>
+     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet" />
+    <!-- Add custom CSS here -->
+    <style> 
+    body {
+        margin-top: 60px;
+    }
+    </style>
+    <script>
+var _prum = [['id', '539dc71cabe53d82181c495a'],
+             ['mark', 'firstbyte', (new Date()).getTime()]];
+(function() {
+    var s = document.getElementsByTagName('script')[0]
+      , p = document.createElement('script');
+    p.async = 'async';
+    p.src = '//rum-static.pingdom.net/prum.min.js';
+    s.parentNode.insertBefore(p, s);
+})();
+</script>
+    
+
+</head>
+
+<body>
+      <script>
+		var socket = io("http://whatdoestwitterfeel-rajaselvan.rhcloud.com:8000");
+		function otha(){
+			var word = document.getElementById("search_term").value;
+			socket.emit('search', { data: word });
+		};
+		socket.on('ok', function(data){
+			var label1=data.message;
+			document.getElementById('welcome').innerHTML=label1;
+		});
+		
+		socket.on('finished', function(data){
+			var label2=data.label;
+			var img = data.image;
+			document.getElementById('emoticon').setAttribute('src', img);
+			document.getElementById('result').innerHTML=label2;
+			
+			
+		});
+		
+		
+     </script>
+			
+            <div class="navbar navbar-fixed-top">
+   				 <div class="navbar-inner">
+    							
+    				<ul class="nav pull-right">
+                    <li class="disabled"><a href="#">What Does Twitter Feel</a></li>
+                    <li><a href="http://rajaselvan.github.io">Meet the developer</a></li>
+                    </ul>
+    			</div>
+    		</div>
+         
+         <div class="row-fluid span6 offset2">
+         <img src="img/soet2009_hashtags.gif">
+         </div>
+        
+	
+	
+	
+		<div class="container">
+        
+		<div class="row-fluid span4 offset2">
+		
+			
+			<div class="input-append">
+			<input class="span6" type="text" name="item" id="search_term" placeholder="Type a search item">
+			<button type="submit" class="btn btn-warning btn-default" onClick="otha()">Search</button>
+			 </div>
+			 
+		</div>
+		
+		
+		{{{ body }}}
+		</div>
+        
+       
+        
+	
+		
+         <script src="js/bootstrap.js" type="text/javascript"></script>
+		<script src="js/jquery-1.10.2.js"></script>
+	</body>
+</html>     
+    	
